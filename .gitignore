@@ -1,0 +1,22 @@
+# ============================================
+#  .gitignore GLOBAL (racine du monorepo)
+# ============================================
+# Ce fichier ignore les éléments communs à TOUT le projet.
+# Chaque sous-dossier (frontend/backend) aura SON propre
+# .gitignore pour ses besoins spécifiques (node_modules, dist...).
+# Système
+# Fichier caché créé par macOS dans chaque dossier
+.DS_Store
+# Tous les fichiers .log (logs de debug, crash, etc.)
+*.log
+
+# Éditeur
+# Config locale de VS Code (préférences perso)
+.vscode/
+# Équivalent pour les éditeurs JetBrains (WebStorm...)
+.idea/
+
+# Dépendances & env (sécurité au cas où)
+node_modules/
+.env
+
