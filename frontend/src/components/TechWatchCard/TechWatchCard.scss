@@ -1,0 +1,75 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+@use 'sass:color';
+
+// Teinte de carte légèrement plus claire que le fond du site
+$techwatch-card-bg: color.adjust(v.$color-bg, $lightness: 3%);
+
+.techwatch-card {
+    @include m.flex-row(flex-start, center);
+    gap: v.$spacing-lg;
+    border: 1px solid v.$color-border;
+    @include m.card;
+    transition: v.$transition-base;
+
+    &_image-link {
+        flex-shrink: 0;
+        display: block;
+        width: 40%;
+        max-width: 320px;
+        border-radius: v.$radius-md;
+        overflow: hidden;
+        transition: v.$transition-base;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: v.$shadow-md;
+        }
+
+        &:focus-visible {
+            outline: 2px solid v.$color-accent;
+            outline-offset: 3px;
+        }
+    }
+
+    &_image {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+
+        &_empty {
+            background-color: v.$color-border;
+        }
+    }
+
+    &_content {
+        @include m.flex-col(center, flex-start);
+        gap: v.$spacing-sm;
+        flex: 1;
+
+        &-title {
+            font-size: v.$font-size-xl;
+            font-weight: v.$font-weight-bold;
+            color: v.$color-text;
+        }
+
+        &-description {
+            font-size: v.$font-size-base;
+            font-weight: v.$font-weight-normal;
+            color: v.$color-text;
+            line-height: 1.6;
+        }
+    }
+
+    // Responsive : image au-dessus du texte sur mobile/tablette
+    @media (max-width: v.$breakpoint-tablet) {
+        @include m.flex-col(flex-start, stretch);
+        gap: v.$spacing-md;
+
+        &_image-link {
+            width: 100%;
+            max-width: none;
+        }
+    }
+}

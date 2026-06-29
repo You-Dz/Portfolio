@@ -1,0 +1,52 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+
+.home-body {
+    @include m.flex-col(center, center);
+    padding: v.$spacing-2xl 0;
+    gap: v.$spacing-2xl;
+
+    .section-hero {
+        @include m.flex-row(space-between, center);
+        width: 100%;
+
+        @media (max-width: v.$breakpoint-mobile) {
+            @include m.flex-col;
+        }
+
+        .hero-img {
+            @include m.avatar-round(clamp(8rem, 30vw, 20rem));
+        }
+
+        .hero-text {
+            @include m.flex-col(center, center);
+
+            .hero-cta {
+                @include m.flex-row;
+                gap: v.$spacing-md;
+                margin-top: v.$spacing-md;
+
+                .cta-button {
+                    @include m.ctaButton;
+                }
+            }
+        }
+    }
+
+    .section-cards {
+        @include m.flex-row(center, center);
+        gap: v.$spacing-lg;
+        width: 100%;
+
+        @media(max-width: v.$breakpoint-tablet) {
+            @include m.flex-col;
+        }
+
+        .section-card_link {
+            flex: 1 1 0;
+            min-width: 0;
+            text-decoration: none;
+        }
+    }
+}

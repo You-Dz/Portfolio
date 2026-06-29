@@ -1,0 +1,68 @@
+//  Couleurs
+
+$color-bg: #F5F7FA; // Fond principal
+$color-card: #FFFFFF; // Cartes / encarts
+$color-text: #2C3E50; // Texte principal
+$color-accent: #5B7A99; // Accent (liens, boutons)
+$color-border: #D1DCE5; // Bordures
+
+// Gardés sous le coude
+$color-accent-alt: #3A6EA5; // Accent + punchy (option B)
+
+
+// Typographie
+
+$font-main: 'Nunito', sans-serif; // Une seule famille (Option 2)
+
+// Tailles
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px ← référence
+$font-size-lg: 1.25rem; // 20px
+$font-size-xl: 1.5rem; // 24px
+$font-size-2xl: 2rem; // 32px
+$font-size-3xl: 3rem; // 48px (hero)
+
+// Graisses
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+
+// Espacements
+$spacing-xxs: 0.1rem;
+$spacing-xs: 0.5rem; // 8px
+$spacing-sm: 1rem; // 16px
+$spacing-md: 1.5rem; // 24px
+$spacing-lg: 2rem; // 32px
+$spacing-xl: 3rem; // 48px
+$spacing-2xl: 4rem; // 64px
+$spacing-3xl: 6rem;
+
+
+
+//Radius
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 16px;
+
+//Shadows
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+//Transitions
+$transition-base: 0.3s ease;
+
+// Breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+//overlay
+$overlay-gradient-base: rgba(0, 0, 0, 0);
+$overlay-dark: rgba(0, 0, 0, 0.5);
+
+//container
+$page-padding: 6rem;
+$max-content-width: 1440px;

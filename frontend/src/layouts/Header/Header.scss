@@ -1,0 +1,130 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: v.$color-card;
+    border-bottom: 1px solid v.$color-border;
+    padding: v.$spacing-lg 0;
+    box-shadow: v.$shadow-md;
+
+    // Bandeau admin : caché par défaut, révélé en mode admin
+    .header-admin-banner {
+        @include m.flex-row(center, center);
+        display: none;
+        background-color: v.$color-accent;
+        color: v.$color-card;
+        font-weight: v.$font-weight-bold;
+        padding: v.$spacing-xs 0;
+        margin-bottom: v.$spacing-sm;
+
+        &.visible {
+            display: flex;
+        }
+    }
+
+    .header-content {
+        @include m.flex-row(space-between, center);
+        @include m.container-max-width;
+
+        @media (max-width: v.$breakpoint-tablet) {
+            @include m.flex-col;
+        }
+
+        .header-left {
+            @include m.flex-row;
+            gap: clamp(v.$spacing-xs, 4vw, v.$spacing-sm);
+
+            .header-portrait {
+                width: v.$spacing-xl;
+                height: v.$spacing-xl;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .header-name {
+                @include m.tag;
+                font-size: clamp(v.$font-size-xs, 3vw, v.$font-size-base);
+            }
+
+            // Bouton discret LogIn / LogOut
+            .header-auth {
+                background-color: v.$color-border;
+                color: v.$color-text;
+                border: none;
+                border-radius: v.$radius-md;
+                padding: v.$spacing-xxs v.$spacing-xs;
+                font-size: v.$font-size-xs;
+                cursor: pointer;
+                opacity: 0.5;
+                transition: v.$transition-base;
+
+                &:hover {
+                    opacity: 1;
+                    transform: scale(1.1);
+                    box-shadow: v.$shadow-sm;
+                }
+            }
+        }
+
+        .header-right {
+            @include m.flex-row;
+            gap: v.$spacing-sm;
+
+            .header-nav {
+                @include m.flex-row;
+                gap: clamp(v.$spacing-xs, 20vw, v.$spacing-md);
+
+                .nav-link {
+                    color: v.$color-text;
+                    transition: v.$transition-base;
+                    font-size: clamp(v.$font-size-xs, 2vw, v.$font-size-sm);
+
+                    &:hover {
+                        border-radius: v.$radius-md;
+                        background-color: v.$color-border;
+                        padding: v.$spacing-xs v.$spacing-sm;
+                    }
+                }
+
+                @media (max-width: v.$breakpoint-tablet) {
+                    display: none;
+
+                    &.open {
+                        @include m.flex-col(center, center);
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        right: 0;
+
+                        background-color: v.$color-card;
+                        border-bottom: 1px solid v.$color-border;
+                        box-shadow: v.$shadow-md;
+                        padding: v.$spacing-md;
+                        gap: v.$spacing-sm;
+                    }
+                }
+            }
+
+            .burger {
+                display: none;
+
+                @media (max-width:v.$breakpoint-tablet) {
+                    @include m.flex-row(center, center);
+                    background: transparent;
+                    border: 1px solid v.$color-border;
+                    border-radius: v.$radius-md;
+                    padding: v.$spacing-xs v.$spacing-sm;
+                    color: v.$color-text;
+                    cursor: pointer;
+                }
+            }
+
+            .cta-button {
+                @include m.ctaButton;
+            }
+        }
+    }
+}

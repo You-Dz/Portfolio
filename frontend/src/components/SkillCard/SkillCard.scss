@@ -1,0 +1,67 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.skill-card {
+    @include m.flex-col;
+    gap: v.$spacing-md;
+    @include m.card;
+    overflow: hidden;
+    position: relative;
+
+
+    &_heart {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: v.$spacing-sm;
+    }
+
+    &_header {
+        @include m.flex-row(center, center);
+        gap: v.$spacing-sm;
+    }
+
+    &_logo {
+        @include m.logo-icon;
+    }
+
+    &_level {
+        @include m.flex-row(center, center);
+        gap: v.$spacing-md;
+        width: 100%;
+
+        &-text {
+            flex-shrink: 0; // le texte ne se compresse pas
+        }
+
+        &-bar {
+            flex: 1;
+            height: 8px;
+            background: v.$color-bg;
+            border-radius: 4px;
+            overflow: hidden; // pour que le fill arrondi reste dans la barre
+
+        }
+
+        &-fill {
+            height: 100%;
+            background: v.$color-accent;
+            width: 50%;
+            border-radius: 4px;
+            transition: width 0.3s ease; // petit effet sympa
+
+            // mapping niveau → largeur
+            &[data-level="1"] {
+                width: 33%;
+            }
+
+            &[data-level="2"] {
+                width: 66%;
+            }
+
+            &[data-level="3"] {
+                width: 100%;
+            }
+        }
+    }
+}

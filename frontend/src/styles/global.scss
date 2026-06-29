@@ -1,0 +1,31 @@
+@use './variables' as v;
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: v.$font-main;
+    background-color: v.$color-bg;
+    color: v.$color-text;
+    line-height: 1.6;
+}
+
+.page-title {
+    font-size: clamp(v.$font-size-xl, 4vw, v.$font-size-3xl);
+}
+
+h2 {
+    font-size: clamp(v.$font-size-base, 4vw, v.$font-size-lg);
+}
+
+p,
+a,
+ul {
+    font-size: clamp(v.$font-size-xs, 4vw, v.$font-size-base);
+}
+
+.important {
+    font-weight: 600;
+}

@@ -1,0 +1,27 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.about-main {
+    @include m.flex-col;
+
+    .section-presentation {
+        @include m.flex-row;
+        gap: v.$spacing-md;
+        padding: v.$spacing-md 0;
+
+        &_text {
+            @include m.flex-col;
+            gap: v.$spacing-md;
+        }
+    }
+
+    .hero-img {
+        @include m.avatar-round(clamp(8rem, 30vw, 20rem));
+    }
+
+    .section-parcours {
+        @include m.flex-col;
+        gap: v.$spacing-md;
+        padding: v.$spacing-md 0;
+    }
+}

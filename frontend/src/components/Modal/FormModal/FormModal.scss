@@ -1,0 +1,106 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/mixins' as m;
+
+/* ─── Structure commune à toute modale formulaire ─── */
+
+.modal-header {
+    margin-bottom: v.$spacing-md;
+
+    .modal-title {
+        font-size: v.$font-size-xl;
+        font-weight: v.$font-weight-bold;
+        color: v.$color-text;
+    }
+}
+
+.modal-body {
+    @include m.flex-col(flex-start, stretch);
+    gap: v.$spacing-md;
+
+    .form-label {
+        @include m.flex-col(flex-start, stretch);
+        gap: v.$spacing-xs;
+        font-size: v.$font-size-sm;
+        font-weight: v.$font-weight-medium;
+        color: v.$color-text;
+
+        &:not(:first-child) {
+            margin-top: v.$spacing-xs;
+        }
+    }
+
+    .form-input_text {
+        width: 100%;
+        font-size: v.$font-size-sm;
+        color: v.$color-text;
+        background: v.$color-card;
+        border: 1px solid v.$color-border;
+        border-radius: v.$radius-sm;
+        padding: v.$spacing-xs v.$spacing-sm;
+        transition: v.$transition-base;
+
+        &:focus {
+            outline: none;
+            border-color: v.$color-accent;
+        }
+    }
+
+    .form-button {
+        font-size: v.$font-size-sm;
+        color: v.$color-text;
+        @include m.button;
+        @include m.buttonHover;
+    }
+
+    .form-techs {
+        border: 1px solid v.$color-border;
+        border-radius: v.$radius-sm;
+        padding: v.$spacing-sm;
+        margin-top: v.$spacing-md;
+
+        &_row {
+            @include m.flex-row(flex-start, center);
+            gap: v.$spacing-xs;
+            margin-bottom: v.$spacing-xs;
+
+            .form-input_grow {
+                flex: 1;
+                min-width: 0;
+            }
+        }
+    }
+
+    .form-input_file {
+        font-size: v.$font-size-sm;
+        color: v.$color-text;
+
+        &::file-selector-button {
+            font-size: v.$font-size-sm;
+            color: v.$color-text;
+            @include m.button;
+            @include m.buttonHover;
+            margin-right: v.$spacing-sm;
+        }
+    }
+}
+
+.modal-footer {
+    @include m.flex-row(flex-end, center);
+    gap: v.$spacing-sm;
+    margin-top: v.$spacing-md;
+    padding-top: v.$spacing-md;
+    border-top: 1px solid v.$color-border;
+
+    /* bouton Annuler */
+    .btn-cancel {
+        @include m.button;
+        @include m.buttonHover;
+    }
+
+    /* bouton submit principal */
+    .btn-submit {
+        @include m.button;
+        background-color: v.$color-accent;
+        @include m.buttonHover;
+    }
+}

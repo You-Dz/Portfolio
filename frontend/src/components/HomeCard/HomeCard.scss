@@ -1,0 +1,25 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.home-cards {
+    @include m.flex-row(flex-start, center);
+    color: v.$color-text;
+    gap: v.$spacing-md;
+    @include m.card;
+    transition: v.$transition-base;
+    @include m.card-hover-gradient;
+
+    .home-cards_img {
+        width: 40%;
+        flex-shrink: 0;
+        object-fit: cover;
+        aspect-ratio: 4/3;
+        border-radius: v.$radius-lg;
+    }
+
+    .home-cards_text {
+        @include m.flex-col(center, flex-start);
+        min-width: 0;
+    }
+
+}

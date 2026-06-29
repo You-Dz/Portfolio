@@ -1,0 +1,98 @@
+@use './variables' as v;
+@use "sass:color";
+
+//display
+@mixin flex-row($justify: flex-start, $align: center) {
+    display: flex;
+    flex-direction: row;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin flex-col($justify: flex-start, $align: center) {
+    display: flex;
+    flex-direction: column;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+
+//button
+@mixin button {
+    background-color: v.$color-border;
+    border-radius: v.$radius-md;
+    border: none;
+    padding: v.$spacing-xs v.$spacing-md;
+}
+
+@mixin buttonHover {
+    cursor: pointer;
+    transition: v.$transition-base;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: v.$shadow-md;
+    }
+}
+
+@mixin ctaButton {
+    @include buttonHover;
+    border-radius: v.$radius-lg;
+    background-color: v.$color-accent;
+    padding: v.$spacing-md v.$spacing-lg;
+    color: v.$color-card;
+    border: none;
+
+    &:hover {
+        background-color: color.adjust(v.$color-accent, $lightness: -10%);
+    }
+}
+
+//container
+@mixin container-max-width {
+    max-width: v.$max-content-width;
+    margin: 0 auto;
+    width: 100%;
+    padding-left: v.$page-padding;
+    padding-right: v.$page-padding;
+}
+
+@mixin card($padding: v.$spacing-md) {
+    background-color: v.$color-card;
+    border-radius: v.$radius-lg;
+    box-shadow: v.$shadow-md;
+    padding: $padding;
+}
+
+@mixin card-hover-gradient {
+    &:hover {
+        background: linear-gradient(to bottom,
+                v.$overlay-gradient-base,
+                v.$overlay-dark 100%);
+    }
+}
+
+@mixin auto-grid($min: 280px, $gap: v.$spacing-xl) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($min, 1fr));
+    gap: $gap;
+}
+
+@mixin avatar-round($size) {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@mixin logo-icon($size: 40px) {
+    width: $size;
+    height: $size;
+    object-fit: contain;
+}
+
+@mixin tag {
+    background-color: v.$color-border;
+    border-radius: v.$radius-md;
+    padding: v.$spacing-xxs v.$spacing-md;
+}

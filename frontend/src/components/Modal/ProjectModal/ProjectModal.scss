@@ -1,0 +1,119 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/mixins' as m;
+
+.project-modal {
+
+    width: 100%;
+    max-width: 900px;
+}
+
+
+.modal-header {
+    margin-bottom: v.$spacing-md;
+
+    /* on garde de la place à droite pour ne pas
+       passer sous le bouton fermer */
+    padding-right: v.$spacing-lg;
+
+    .modal-title {
+        font-size: v.$font-size-xl;
+        font-weight: v.$font-weight-bold;
+        color: v.$color-text;
+        margin-bottom: v.$spacing-xs;
+    }
+
+    .modal-date {
+        font-size: v.$font-size-sm;
+        color: v.$color-accent;
+    }
+}
+
+/* ─────────────────────────────
+   SCREENSHOT (carousel pour l'instant 1 img)
+───────────────────────────── */
+.modal-body {
+    .carousel {
+        margin-bottom: v.$spacing-md;
+    }
+
+    .modal-screenshot {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-radius: v.$radius-md;
+        display: block;
+
+        /* état vide (placeholder gris) */
+        &_empty {
+            background: v.$color-border;
+        }
+    }
+}
+
+/* ─────────────────────────────
+   Modal contenu texte
+───────────────────────────── */
+.modal-body {
+
+    .modal-body_tech {
+        margin-bottom: v.$spacing-md;
+
+        &_title {
+            display: block;
+            font-size: v.$font-size-xs;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: v.$font-weight-bold;
+            color: v.$color-accent;
+            margin-bottom: v.$spacing-sm;
+        }
+
+        &_logos {
+            @include m.flex-row(flex-start, center);
+            flex-wrap: wrap;
+            gap: v.$spacing-sm;
+        }
+
+        &_name {
+            @include m.flex-col(center, center);
+            gap: 4px;
+            font-size: v.$font-size-xs;
+            color: v.$color-text;
+
+            img {
+                @include m.logo-icon;
+            }
+        }
+    }
+
+    .modal-body_sections {
+        @include m.flex-col(center, flex-start);
+        gap: v.$spacing-md;
+
+        &_title {
+            font-size: v.$font-size-lg;
+        }
+
+        &_text {
+            font-size: v.$font-size-sm;
+        }
+
+        &_list {
+            font-size: v.$font-size-sm;
+        }
+    }
+}
+
+.modal-footer {
+    @include m.flex-row(flex-end, center);
+    gap: v.$spacing-sm;
+    margin-top: v.$spacing-lg;
+    padding-top: v.$spacing-md;
+    border-top: 1px solid v.$color-border;
+
+    .link-button {
+        color: v.$color-text;
+        @include m.button;
+        @include m.buttonHover;
+    }
+}

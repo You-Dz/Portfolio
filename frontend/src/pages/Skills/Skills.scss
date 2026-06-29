@@ -1,0 +1,32 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.skills-header {
+    @include m.flex-col;
+}
+
+.skills-body {
+
+    &_grid {
+        @include m.auto-grid;
+        padding: v.$spacing-xl 0;
+    }
+
+    &_favorite {
+        padding-bottom: v.$spacing-md;
+    }
+}
+
+.skills-footer {
+    @include m.flex-col;
+
+    &_tags {
+        @include m.flex-row;
+        gap: v.$spacing-lg;
+        padding: v.$spacing-md;
+
+        &--tag {
+            @include m.tag;
+        }
+    }
+}

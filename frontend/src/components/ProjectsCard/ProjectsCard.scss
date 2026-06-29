@@ -1,0 +1,32 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.project-card {
+    @include m.flex-col;
+    gap: v.$spacing-md;
+    @include m.card;
+    overflow: hidden;
+    cursor: pointer;
+    @include m.card-hover-gradient;
+
+    &_cover {
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 4/3;
+        border-radius: v.$radius-lg;
+
+        &_empty {
+            background: v.$color-border;
+        }
+    }
+
+    &_tags {
+        @include m.flex-row(center, center);
+        gap: clamp(v.$spacing-sm, 4vw, v.$spacing-md);
+        font-size: clamp(v.$font-size-sm, 4vw, v.$font-size-base);
+
+        .tag {
+            @include m.tag;
+        }
+    }
+}
