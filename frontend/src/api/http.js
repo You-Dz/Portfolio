@@ -59,25 +59,36 @@ export async function deleteUrl(url, id) {
 */
 export async function postUrl(url, data) {
     try {
-        const token = JSON.parse(localStorage.getItem("token"))
-        const response = await fetch(`${url}`, {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            },
-            body: data
-        })
-        if (response.ok) {
-            console.log("Données envoyées avec succès")
-            return true
-        } else {
-            const errData = await response.json();  // message du back
-            console.log("Erreur serveur", response.status, errData);
-            return false;
+        const token = localStorage.getItem("token");
+
+        const headers = {
+            "Content-Type": "application/json"
+        };
+
+        // N'ajoute Authorization que si un token existe réellement
+        if (token) {
+            headers["Authorization"] = `Bearer ${token}`;
         }
+
+        const response = await fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            const errData = await response.json();
+            console.log("Erreur serveur", response.status, errData);
+            //  THROW pour que useFormSubmit aille dans son catch
+            throw new Error(errData.message || `Erreur ${response.status}`);
+        }
+
+
+        return await response.json();
     }
     catch (error) {
-        console.log("impossible de communiquer avec le serveur", error)
-        return false
+        console.log("impossible de communiquer avec le serveur", error);
+        //  Relance l'erreur pour que useFormSubmit la capte
+        throw error;
     }
 }

@@ -4,12 +4,12 @@ import useFormSubmit from "../useFormSubmit";
 import { login } from "../../../api/auth";
 import './LoginModal.scss'
 
-function LoginModal({ isOpen, onClose, onSuccess, data }) {
+function LoginModal({ isOpen, onClose, onSuccess }) {
     const [form, setForm] = useState({ email: '', password: '' });
     const [success, setSuccess] = useState("");
 
-    const { submit, error } = useFormSubmit(login, () => {
-        if (data?.token) localStorage.setItem("token", data.token);
+    const { submit, error } = useFormSubmit(login, (result) => {
+        localStorage.setItem("token", result.token);
         setSuccess("Connexion réussi !");
         setForm({ email: '', password: '' }); // on vide le form si tu veux
         onSuccess();

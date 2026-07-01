@@ -1,6 +1,12 @@
+import { postUrl } from '../api/http';
+const url = import.meta.env.VITE_API_URL;
+
 export async function login(credentials) {
-    console.log("Login tenté avec :", credentials);
-    return new Promise((resolve) =>
-        setTimeout(() => resolve({ token: "fake-token-123" }), 500)
-    );
+    return postUrl(`${url}auth/login`, credentials);
 }
+
+
+
+
+
+

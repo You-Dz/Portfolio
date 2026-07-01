@@ -5,6 +5,9 @@ const User = require('../models/user');
 
 
 exports.login = (req, res, next) => {
+    if (!req.body || !req.body.email) {
+        return res.status(400).json({ message: "Email et mot de passe requis" });
+    }
     User.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {

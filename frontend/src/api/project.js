@@ -20,8 +20,8 @@ export async function getProjects() {
     //Ici JSON.parse transforme une string JSON en objet JS
     let projects = JSON.parse(window.localStorage.getItem("projects"))
     if (projects === null) {
-        projects = await getUrl(`${url}categories`)
-        window.localStorage.setItem("categories", JSON.stringify(projects))
+        projects = await getUrl(`${url}projects`)
+        window.localStorage.setItem("projects", JSON.stringify(projects))
     }
     return projects
 }
