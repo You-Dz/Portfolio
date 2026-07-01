@@ -84,7 +84,7 @@ function AddProjectModal({ isOpen, onClose }) {
 
             <label className="form-label">
                 Image de couverture (cover)
-                <input className="form-input_file" type="file" accept="image/*" onChange={handleCoverChange} />
+                <input className="form-input_file" type="file" name="cover" accept="image/*" onChange={handleCoverChange} />
             </label>
             {cover && <p className="form-hint">Fichier : {cover.name}</p>}
 

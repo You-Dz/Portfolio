@@ -12,7 +12,7 @@ function ProjectCard({ data, onOpen }) {
     return (
         <article className="project-card" onClick={onOpen} onKeyDown={handleKeyDown} role="button" tabIndex={0} aria-label={`Voir le projet ${data.title}`}>
             {data.cover ? (
-                <img src={data.cover} alt={data.title} className="project-card_cover" />
+                <img src={`/images/${data.cover}`} alt={data.title} className="project-card_cover" />
             ) : (
                 <div className="project-card_cover project-card_cover_empty" aria-hidden="true" />
             )}

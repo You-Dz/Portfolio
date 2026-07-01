@@ -28,7 +28,7 @@ function Projects() {
             </section>
             <section className='projects-gallery' aria-label='Galerie de projets'>
                 {dataProjects.map((project) => (
-                    <ProjectCard key={project.id} data={project} onOpen={() => openProjectModal(project)} />
+                    <ProjectCard key={project.slug} data={project} onOpen={() => openProjectModal(project)} />
                 ))}
             </section>
             <ProjectModal

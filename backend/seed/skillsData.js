@@ -1,11 +1,4 @@
 /**
- * competences.js
- * ─────────────────────────────
- * Data source pour les compétences du portfolio.
- *
- * Schéma calqué sur la structure attendue par le back-end :
- *   → Aucun changement nécessaire lors du passage à l'API.
- *   → Admin : suffit d'ajouter / modifier les objets dans la DB.
  *
  * Schema de chaque compétence :
  *   id          : number   — identifiant unique
@@ -17,7 +10,7 @@
  *   description : string   — une phrase concise en français
  */
 
-export const dataSkills = [
+module.exports = [
     // ─────────────────────────────────────────────
     // FRONTEND  (8 compétences)
     // ─────────────────────────────────────────────
@@ -215,5 +208,3 @@ export const dataSkills = [
     },
 ];
 
-// Export par défaut = tableau complet
-export default dataSkills;

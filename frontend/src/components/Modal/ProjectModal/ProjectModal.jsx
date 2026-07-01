@@ -23,7 +23,8 @@ function ProjectModal({ project, isOpen, onClose }) {
                     <div className="modal-body_tech_logos">
                         {project.techs.map((tech) => (
                             <span key={tech.name} className="modal-body_tech_name">
-                                <img src={`/logos/${tech.icon}.svg`} alt={tech.name} />
+                                <img src={`/logos/${tech.icon}.svg`} alt={tech.name}
+                                    onError={(e) => { e.target.style.display = 'none'; }} />
                                 {tech.name}
                             </span>
                         ))}
