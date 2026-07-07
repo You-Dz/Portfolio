@@ -11,7 +11,8 @@ function Footer() {
                 </div>
 
                 <p className="footer-copy">
-                    © {new Date().getFullYear()} Yoann — Tous droits réservés
+                    © {new Date().getFullYear()} Yoann —{' '}
+                    <span className="footer-copy_break">Tous droits réservés</span>
                 </p>
                 <button className="footer-scrolltop" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                     Retour en haut ↑

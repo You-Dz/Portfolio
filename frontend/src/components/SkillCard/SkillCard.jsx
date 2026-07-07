@@ -6,7 +6,7 @@ function SkillCard({ data }) {
         <article className='skill-card'>
             {preference && <span className="skill-card_heart" aria-label="Compétence préférée">❤️</span>}
             <div className='skill-card_header'>
-                <img className="skill-card_logo" src={`/logos/${icon}.svg`} alt={`Logo ${name}`} />
+                <img className="skill-card_logo" src={`/logos/${icon}.svg`} alt={`Logo ${name}`} loading="lazy" />
                 <h3 className="skill-card_name">{name}</h3>
             </div>
             <div className='skill-card_level'>

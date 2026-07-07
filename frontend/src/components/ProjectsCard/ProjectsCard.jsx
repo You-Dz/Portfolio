@@ -1,21 +1,21 @@
 import './ProjectsCard.scss';
-function ProjectCard({ data, onOpen }) {
-
+function ProjectCard({ project, onOpen }) {
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             onOpen();
         }
     };
-    const displayTags = data.techs.slice(0, 3);
-
+    const displayTags = project.techs.slice(0, 3);
+    console.log(project.resume);
     return (
-        <article className="project-card" onClick={onOpen} onKeyDown={handleKeyDown} role="button" tabIndex={0} aria-label={`Voir le projet ${data.title}`}>
-            {data.cover ? (
-                <img src={`/images/${data.cover}`} alt={data.title} className="project-card_cover" />
+        <article className="project-card" onClick={onOpen} onKeyDown={handleKeyDown} role="button" tabIndex={0} aria-label={`Voir le projet ${project.title}`}>
+            {project.cover ? (
+                <img src={`/images/projects/${project.cover}`} alt={project.title} className="project-card_cover" loading="lazy" />
             ) : (
                 <div className="project-card_cover project-card_cover_empty" aria-hidden="true" />
             )}
+            <div className='project-card_resume'>{project.resume}</div>
             <div className="project-card_tags">
                 {displayTags.map((tech) => (
                     <span key={tech.name} className="tag">{tech.name}</span>

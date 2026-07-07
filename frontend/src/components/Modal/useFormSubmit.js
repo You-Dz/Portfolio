@@ -1,18 +1,20 @@
 import { useState } from "react";
 
-function useFormSubmit(apiCall, onSuccess) {
-    const [error, setError] = useState("");
+export default function useFormSubmit(apiFn, onSuccess) {
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const submit = async (data) => {
-        setError("");
+        setLoading(true);
+        setError(null);
         try {
-            const result = await apiCall(data);
-            onSuccess?.(result);
-        } catch {
-            setError("Une erreur est survenue, réessaie.");
+            const result = await apiFn(data);
+            onSuccess(result);
+        } catch (err) {
+            setError(err.message || "Une erreur est survenue");
+        } finally {
+            setLoading(false);
         }
     };
-
-    return { submit, error };
+    return { submit, error, loading };
 }
-export default useFormSubmit;

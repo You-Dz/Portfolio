@@ -26,15 +26,16 @@
     }
 
     .header-content {
-        @include m.flex-row(space-between, center);
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: v.$spacing-sm;
         @include m.container-max-width;
 
-        @media (max-width: v.$breakpoint-tablet) {
-            @include m.flex-col;
-        }
-
         .header-left {
+            justify-self: start;
             @include m.flex-row;
+            align-items: center;
             gap: clamp(v.$spacing-xs, 4vw, v.$spacing-sm);
 
             .header-portrait {
@@ -69,43 +70,50 @@
             }
         }
 
+        .header-nav {
+            justify-self: center;
+            @include m.flex-row(center, center);
+            gap: clamp(v.$spacing-xs, 2vw, v.$spacing-md);
+
+            .nav-link {
+                color: v.$color-text;
+                transition: v.$transition-base;
+                font-size: clamp(v.$font-size-xs, 2vw, v.$font-size-sm);
+
+                &:hover {
+                    border-radius: v.$radius-md;
+                    background-color: v.$color-border;
+                    padding: v.$spacing-xs v.$spacing-sm;
+                }
+            }
+
+            @media (max-width: v.$breakpoint-tablet) {
+                display: none;
+
+                &.open {
+                    @include m.flex-col(center, center);
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+
+                    background-color: v.$color-card;
+                    border-bottom: 1px solid v.$color-border;
+                    box-shadow: v.$shadow-md;
+                    padding: v.$spacing-md;
+                    gap: v.$spacing-sm;
+                }
+            }
+        }
+
         .header-right {
-            @include m.flex-row;
+            justify-self: end;
+            @include m.flex-row(center, center);
             gap: v.$spacing-sm;
 
-            .header-nav {
-                @include m.flex-row;
-                gap: clamp(v.$spacing-xs, 20vw, v.$spacing-md);
-
-                .nav-link {
-                    color: v.$color-text;
-                    transition: v.$transition-base;
-                    font-size: clamp(v.$font-size-xs, 2vw, v.$font-size-sm);
-
-                    &:hover {
-                        border-radius: v.$radius-md;
-                        background-color: v.$color-border;
-                        padding: v.$spacing-xs v.$spacing-sm;
-                    }
-                }
-
-                @media (max-width: v.$breakpoint-tablet) {
-                    display: none;
-
-                    &.open {
-                        @include m.flex-col(center, center);
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        right: 0;
-
-                        background-color: v.$color-card;
-                        border-bottom: 1px solid v.$color-border;
-                        box-shadow: v.$shadow-md;
-                        padding: v.$spacing-md;
-                        gap: v.$spacing-sm;
-                    }
-                }
+            .cta-button {
+                @include m.ctaButton;
+                white-space: nowrap; // évite que Contact saute
             }
 
             .burger {
@@ -121,9 +129,16 @@
                     cursor: pointer;
                 }
             }
+        }
 
-            .cta-button {
-                @include m.ctaButton;
+        @media (max-width: v.$breakpoint-mobile) {
+            grid-template-columns: 1fr;
+            justify-items: center;
+            text-align: center;
+
+            .header-left,
+            .header-right {
+                justify-self: center;
             }
         }
     }

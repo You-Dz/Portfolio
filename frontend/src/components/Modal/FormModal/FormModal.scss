@@ -18,9 +18,6 @@
     gap: v.$spacing-md;
 
     .form-label {
-        @include m.flex-col(flex-start, stretch);
-        gap: v.$spacing-xs;
-        font-size: v.$font-size-sm;
         font-weight: v.$font-weight-medium;
         color: v.$color-text;
 
@@ -30,19 +27,11 @@
     }
 
     .form-input_text {
-        width: 100%;
         font-size: v.$font-size-sm;
-        color: v.$color-text;
         background: v.$color-card;
-        border: 1px solid v.$color-border;
         border-radius: v.$radius-sm;
         padding: v.$spacing-xs v.$spacing-sm;
-        transition: v.$transition-base;
 
-        &:focus {
-            outline: none;
-            border-color: v.$color-accent;
-        }
     }
 
     .form-button {

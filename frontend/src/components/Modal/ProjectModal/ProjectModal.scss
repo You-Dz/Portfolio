@@ -116,4 +116,22 @@
         @include m.button;
         @include m.buttonHover;
     }
+
+    .delete-button {
+        @include m.button;
+        @include m.buttonHover;
+
+        display: none;
+
+        &_icon {
+            height: 20px;
+            width: 20px;
+        }
+
+        &.visible {
+            @include m.flex-row(flex-end, center);
+            gap: v.$spacing-xs;
+        }
+
+    }
 }

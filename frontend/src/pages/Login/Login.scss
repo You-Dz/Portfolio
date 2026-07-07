@@ -1,0 +1,34 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.login-page {
+    /* Le padding de page vient déjà du Layout.
+       On centre juste la carte horizontalement + un peu d'air vertical. */
+    @include m.flex-col(flex-start, center);
+    gap: v.$spacing-lg;
+    padding-top: v.$spacing-2xl;
+    padding-bottom: v.$spacing-2xl;
+
+    .page-title {
+        text-align: center;
+    }
+
+    /* ─── La carte formulaire (reprend le look modal) ─── */
+    .login-form {
+        @include m.card(v.$spacing-lg);
+        @include m.flex-col(flex-start, stretch);
+        gap: v.$spacing-md;
+
+        width: 100%;
+        max-width: 480px;
+    }
+
+
+    /* ─── Bouton (reprend ton CTA) ───────────────── */
+    .btn-submit {
+        @include m.ctaButton;
+        margin-top: v.$spacing-xs;
+        align-self: stretch;
+    }
+
+}

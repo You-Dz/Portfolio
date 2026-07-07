@@ -26,5 +26,5 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/projects', projectsRoute);
 app.use('/api/skills', skillsRoute);
 app.use('/api/auth', userRoute);
-
+const Project = require('./models/project');
 module.exports = app;

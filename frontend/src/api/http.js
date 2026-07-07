@@ -25,13 +25,13 @@ export async function getUrl(url) {
 /**
  * Delete data in API via fetch
  * @param {string} url - url of the API must include path before ID
- * @param {number} id - ID of the data to delete
+ * @param {string} id - ID Mongo du projet à supprime
  * @returns {promise<boolean>}
 */
 export async function deleteUrl(url, id) {
     try {
-        const token = JSON.parse(localStorage.getItem("token"))
-        const response = await fetch(`${url}${Number(id)}`, {
+        const token = localStorage.getItem("token")
+        const response = await fetch(`${url}${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -89,6 +89,46 @@ export async function postUrl(url, data) {
     catch (error) {
         console.log("impossible de communiquer avec le serveur", error);
         //  Relance l'erreur pour que useFormSubmit la capte
+        throw error;
+    }
+}
+
+/**
+ * Envoie des données multipart/form-data (avec fichier) à l'API
+ * @param {string} url - URL complète de l'API
+ * @param {FormData} formData - objet FormData (fichier + JSON stringifié)
+ * @returns {Promise<any>}
+*/
+export async function postFormData(url, formData) {
+    try {
+        const token = localStorage.getItem("token");
+
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            const contentType = response.headers.get("content-type");
+            let errData;
+
+            if (contentType?.includes("application/json")) {
+                errData = await response.json();
+            } else {
+                errData = { message: await response.text() };
+            }
+
+            console.error("Erreur serveur", response.status, errData);
+            throw new Error(errData.message || `Erreur ${response.status}`);
+        }
+
+        return await response.json();
+    }
+    catch (error) {
+        console.error("Impossible de communiquer avec le serveur", error);
         throw error;
     }
 }

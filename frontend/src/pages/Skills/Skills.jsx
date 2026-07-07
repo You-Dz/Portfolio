@@ -1,7 +1,18 @@
-import { dataSkills } from '../../data/skills';
+// import { dataSkills } from '../../data/skills';
+import { useState, useEffect } from 'react';
+import { getUrl } from '../../api/http';
 import SkillCard from '../../components/SkillCard/SkillCard';
 import './Skills.scss';
 function Skills() {
+    const [skills, setSkills] = useState([]);
+    const url = import.meta.env.VITE_API_URL;
+    useEffect(() => {
+        async function fetchSkills() {
+            const data = await getUrl(`${url}skills`);
+            setSkills(data);
+        }
+        fetchSkills();
+    }, [url]);
     return (
         <>
             <div className="skills-header">
@@ -14,8 +25,8 @@ function Skills() {
                     <span className="dot dot--filled" /> Plus il y a de points, plus la techno m'est familière.
                 </p>
                 <div className="skills-body_grid" aria-label="Galerie de mes compétences">
-                    {dataSkills.map((skill) => (
-                        <SkillCard key={skill.id} data={skill} />
+                    {skills.map((skill) => (
+                        <SkillCard key={skill._id} data={skill} />
                     ))}
                 </div>
                 <div className="skills-body_favorite">

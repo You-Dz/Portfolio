@@ -1,4 +1,5 @@
 @use './variables' as v;
+@use './mixins' as m;
 
 
 * {
@@ -28,4 +29,33 @@ ul {
 
 .important {
     font-weight: 600;
+}
+
+/* ─── Formulaires (réutilisable partout) ─── */
+.form-label {
+    @include m.flex-col(flex-start, stretch);
+    gap: v.$spacing-xs;
+    font-size: v.$font-size-base;
+}
+
+.form-input_text {
+    width: 100%;
+    padding: v.$spacing-xs v.$spacing-sm;
+    border-radius: v.$radius-md;
+    border: 1px solid v.$color-border;
+    background: v.$color-bg;
+    color: v.$color-text;
+    font-size: v.$font-size-base;
+    transition: v.$transition-base;
+
+    &:focus {
+        outline: none;
+        border-color: v.$color-accent;
+    }
+}
+
+.form-error {
+    color: v.$color-error;
+    font-size: v.$font-size-sm;
+    text-align: center;
 }

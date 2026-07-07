@@ -9,12 +9,20 @@
     transition: v.$transition-base;
     @include m.card-hover-gradient;
 
+    @media (max-width: v.$breakpoint-tablet) {
+        @include m.flex-col;
+    }
+
     .home-cards_img {
         width: 40%;
         flex-shrink: 0;
         object-fit: cover;
         aspect-ratio: 4/3;
         border-radius: v.$radius-lg;
+
+        @media (max-width: v.$breakpoint-tablet) {
+            width: 80%;
+        }
     }
 
     .home-cards_text {

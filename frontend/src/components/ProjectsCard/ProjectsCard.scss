@@ -7,7 +7,11 @@
     @include m.card;
     overflow: hidden;
     cursor: pointer;
+    //Permet de baser les clamp sur la largeur du conteneur et non de la fenêtre
+    container-type: inline-size;
     @include m.card-hover-gradient;
+    position: relative;
+
 
     &_cover {
         width: 100%;
@@ -20,10 +24,19 @@
         }
     }
 
+    &_resume {
+        color: v.$color-text;
+    }
+
     &_tags {
         @include m.flex-row(center, center);
-        gap: clamp(v.$spacing-sm, 4vw, v.$spacing-md);
-        font-size: clamp(v.$font-size-sm, 4vw, v.$font-size-base);
+        flex-wrap: nowrap;
+        // gap fluide : de 0.4rem (serré) à 1rem (large)
+        gap: clamp(v.$spacing-xs, 3cqw, #{v.$spacing-sm});
+        width: 100%;
+        min-width: 0;
+        // padding conteneur fluide aussi
+        padding: 0 clamp(v.$spacing-xs, 3cqw, #{v.$spacing-sm});
 
         .tag {
             @include m.tag;

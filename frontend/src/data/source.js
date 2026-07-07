@@ -1,7 +1,7 @@
 export const dataSource = [
     {
         name: 'Web.dev',
-        image: '/images/webdev.webp',
+        image: '/pictures/techwatch/webdev.webp',
         alt: 'Aperçu du blog Web.dev',
         link: 'https://web.dev/blog',
         description:
@@ -9,7 +9,7 @@ export const dataSource = [
     },
     {
         name: 'Access42',
-        image: '/images/access42.webp',
+        image: '/pictures/techwatch/access42.webp',
         alt: 'Aperçu du blog Access42',
         link: 'https://access42.net/blog/',
         description:
@@ -17,7 +17,7 @@ export const dataSource = [
     },
     {
         name: 'Web Dev Simplified',
-        image: '/images/webdevsimplified.webp',
+        image: '/pictures/techwatch/webdevsimplified.webp',
         alt: 'Aperçu de la chaîne Web Dev Simplified',
         link: 'https://youtube.com/@WebDevSimplified',
         description:

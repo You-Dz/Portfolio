@@ -9,6 +9,7 @@
     .footer-content {
         @include m.flex-row(space-between, center);
         @include m.container-max-width;
+        gap: 10px;
 
         .socials-link {
             color: v.$color-card;
@@ -17,6 +18,16 @@
         .footer-scrolltop {
             @include m.button;
             @include m.buttonHover;
+
+            @media (max-width: v.$breakpoint-mobile) {
+                padding: v.$spacing-xs v.$spacing-sm;
+            }
+        }
+
+        .footer-copy_break {
+            @media (max-width: v.$breakpoint-tablet) {
+                display: block;
+            }
         }
     }
 

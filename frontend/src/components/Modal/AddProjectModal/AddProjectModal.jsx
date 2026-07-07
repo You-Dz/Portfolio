@@ -4,25 +4,30 @@ import useFormSubmit from "../useFormSubmit";
 import { addProject } from "../../../api/project";
 import './AddProjectModal.scss';
 
-function AddProjectModal({ isOpen, onClose }) {
+function AddProjectModal({ isOpen, onClose, onProjectCreated }) {
     const [form, setForm] = useState({
-        title: '', date: '', excerpt: '', context: '',
+        title: '', date: '', resume: '', context: '',
         objectives: '', stacks: '', skills: '',
         results: '', improvements: '', github: '', demo: '',
     });
     const [techs, setTechs] = useState([{ name: '', icon: '' }]);
     const [cover, setCover] = useState(null);
     const [success, setSuccess] = useState("");
+    const [fileKey, setFileKey] = useState(() => Date.now()); // reset visuel input file
 
-    const { submit, error } = useFormSubmit(addProject, () => {
+    // Si ton hook ne retourne pas 'loading', enlève-le du destructuring
+    const { submit, error, loading } = useFormSubmit(addProject, () => {
         setSuccess("Projet ajouté avec succès !");
         setForm({
-            title: '', date: '', excerpt: '', context: '',
+            title: '', date: '', resume: '', context: '',
             objectives: '', stacks: '', skills: '',
             results: '', improvements: '', github: '', demo: '',
         });
         setTechs([{ name: '', icon: '' }]);
         setCover(null);
+        setFileKey(Date.now()); // vide visuellement l'input file
+        onProjectCreated();          // recharge la liste dans Projects.jsx
+        setTimeout(() => onClose(), 900);
     });
 
     const handleChange = (e) =>
@@ -38,26 +43,29 @@ function AddProjectModal({ isOpen, onClose }) {
     const addTech = () => setTechs([...techs, { name: '', icon: '' }]);
     const removeTech = (index) => setTechs(techs.filter((_, i) => i !== index));
 
-    // texte multi-ligne → tableau
     const toArray = (str) => str.split('\n').map(s => s.trim()).filter(Boolean);
 
     const handleSubmit = () => {
-        const payload = {
-            title: form.title,
+        setSuccess("");
+        const projectData = {
+            title: form.title.trim(),
             date: form.date,
-            excerpt: form.excerpt,
-            context: form.context,
+            resume: form.resume.trim(),
+            context: form.context.trim(),
             objectives: toArray(form.objectives),
             stacks: toArray(form.stacks),
             skills: toArray(form.skills),
             results: toArray(form.results),
             improvements: toArray(form.improvements),
-            // on retire les lignes techs vides
             techs: techs.filter(t => t.name.trim()),
-            links: { github: form.github, demo: form.demo },
-            cover, // le fichier (à brancher en FormData côté API plus tard)
+            links: { github: form.github.trim(), demo: form.demo.trim() },
         };
-        submit(payload);
+
+        const formData = new FormData();
+        formData.append("project", JSON.stringify(projectData));
+        formData.append("cover", cover); // champ "cover" = ce que multer attend
+
+        submit(formData);
     };
 
     return (
@@ -68,13 +76,14 @@ function AddProjectModal({ isOpen, onClose }) {
             className="add-project-modal"
             onSubmit={handleSubmit}
             error={error}
-            submitLabel="Ajouter">
+            isSubmitting={loading}
+            submitLabel={loading ? "Envoi..." : "Ajouter"}>
 
             {success && <p className="form-success">{success}</p>}
 
             <label className="form-label">
-                Titre
-                <input className="form-input_text" name="title" value={form.title} onChange={handleChange} />
+                Titre *
+                <input className="form-input_text" name="title" value={form.title} onChange={handleChange} required />
             </label>
 
             <label className="form-label">
@@ -83,19 +92,29 @@ function AddProjectModal({ isOpen, onClose }) {
             </label>
 
             <label className="form-label">
-                Image de couverture (cover)
-                <input className="form-input_file" type="file" name="cover" accept="image/*" onChange={handleCoverChange} />
+                Image de couverture *
+                <input
+                    key={fileKey}
+                    className="form-input_file"
+                    type="file"
+                    name="cover"
+                    accept="image/*"
+                    onChange={handleCoverChange}
+                    required
+                />
             </label>
             {cover && <p className="form-hint">Fichier : {cover.name}</p>}
 
-
+            <label className="form-label">
+                Résumé
+                <textarea className="form-input_text" name="resume" value={form.resume} onChange={handleChange} />
+            </label>
 
             <label className="form-label">
                 Contexte
                 <textarea className="form-input_text" name="context" value={form.context} onChange={handleChange} />
             </label>
 
-            {/* ---- TECHNOLOGIES (name + icon) ---- */}
             <fieldset className="form-techs">
                 <legend className="form-label">Technologies utilisées</legend>
                 {techs.map((tech, index) => (

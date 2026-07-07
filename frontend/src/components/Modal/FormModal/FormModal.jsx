@@ -1,7 +1,7 @@
 import BaseModal from "../BaseModal/BaseModal";
 import './FormModal.scss';
 
-function FormModal({ isOpen, onClose, title, onSubmit, error, submitLabel = "Valider", className = '', children }) {
+function FormModal({ isOpen, onClose, title, onSubmit, error, submitLabel = "Valider", className = '', children, isSubmitting = false }) {
     return (
         <BaseModal isOpen={isOpen} onClose={onClose} className={`form-modal ${className}`}>
             <section className="modal-header">
@@ -20,7 +20,7 @@ function FormModal({ isOpen, onClose, title, onSubmit, error, submitLabel = "Val
                     <button type="button" className="btn-cancel" onClick={onClose}>
                         Annuler
                     </button>
-                    <button type="submit" className="btn-submit">
+                    <button type="submit" className="btn-submit" disabled={isSubmitting}>
                         {submitLabel}
                     </button>
                 </footer>

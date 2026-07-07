@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import testImage from '../../assets/images/test-image.webp';
+import projectsImage from '../../assets/images/homecard-project-cover.webp';
+import skillsImage from '../../assets/images/homecard-skill-cover.webp';
+// import projectsImage from '../../assets/images/homecard-project-cover';
 import HomeCard from "../../components/HomeCard/HomeCard";
 import './Home.scss';
 function Home() {
@@ -20,13 +23,13 @@ function Home() {
             </section>
             <section className="section-cards">
                 <Link className="section-card_link" to='/projects' >
-                    <HomeCard img={testImage} alt="Image descriptive de la page du site visée" title="Nom page visée" text="Description sommaire page visée" />
+                    <HomeCard img={projectsImage} alt="Image descriptive de la page du site visée" title="Mes projets" text="Venez découvrir mes projets" />
                 </Link>
                 <Link className="section-card_link" to='/about'>
-                    <HomeCard img={testImage} alt="Image descriptive de la page du site visée" title="Nom page visée" text="Description sommaire page visée" />
+                    <HomeCard img={testImage} alt="Image descriptive de la page du site visée" title="À propos" text="Découvrer en plus sur moi et mon parcours" />
                 </Link>
                 <Link className="section-card_link" to='/skills'>
-                    <HomeCard img={testImage} alt="Image descriptive de la page du site visée" title="Nom page visée" text="Description sommaire page visée" />
+                    <HomeCard img={skillsImage} alt="Image descriptive de la page du site visée" title="Mes compétences" text="Venez découvrir mes compétences" />
                 </Link>
             </section>
         </main>

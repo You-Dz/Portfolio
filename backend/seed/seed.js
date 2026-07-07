@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const Project = require('../models/Project');
-const Skill = require('../models/Skill');
+const Project = require('../models/project');
+const Skill = require('../models/skill');
 const projectsData = require('./projectsData');
 const skillsData = require('./skillsData');
 

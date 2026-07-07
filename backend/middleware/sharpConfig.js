@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Dossier de sortie (adapte le nombre de '..' à ton arborescence !)
-const OUTPUT_DIR = path.join(__dirname, '..', 'images');
+const OUTPUT_DIR = path.join(__dirname, '..', 'images', 'projects');
 
 // Sécurité : crée le dossier s'il n'existe pas (utile au déploiement)
 if (!fs.existsSync(OUTPUT_DIR)) {

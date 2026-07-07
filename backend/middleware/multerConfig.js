@@ -34,7 +34,7 @@ const upload = multer({
 
 // 5) Deux "sorties" prêtes à brancher dans les routes.
 module.exports = {
-    single: upload.single('cover'),       // 1 fichier, champ "image" -> req.file
+    single: upload.single('cover'),       // 1 fichier, champ "cover" -> req.file
     fields: upload.fields([               // plusieurs champs        -> req.files
         { name: 'cover', maxCount: 1 },
         { name: 'images', maxCount: 10 },

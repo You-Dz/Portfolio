@@ -1,9 +1,30 @@
+import { useOutletContext } from 'react-router-dom';
+import { deleteUrl } from '../../../api/http'; // adapte le chemin
 import BaseModal from "../BaseModal/BaseModal";
 import './ProjectModal.scss';
 
-function ProjectModal({ project, isOpen, onClose }) {
+function ProjectModal({ project, isOpen, onClose, onDeleted }) {
+    const { isLoggedIn } = useOutletContext();
+    const url = import.meta.env.VITE_API_URL;
+
     if (!project) return null;
 
+    const handleDelete = async () => {
+        // Confirmation obligatoire (prévu dans ta charte)
+        const confirmed = window.confirm(
+            `Supprimer le projet "${project.title}" ? Cette action est irréversible.`
+        );
+        if (!confirmed) return;
+
+        const success = await deleteUrl(`${url}projects/`, project._id);
+
+        if (success) {
+            onDeleted(project._id); // on prévient le parent
+            onClose();              // on ferme la modale
+        } else {
+            alert("La suppression a échoué. Réessaie.");
+        }
+    };
     return (
         <BaseModal isOpen={isOpen} onClose={onClose} className="project-modal">
             <section className="modal-header">
@@ -13,7 +34,7 @@ function ProjectModal({ project, isOpen, onClose }) {
             <div className="modal-body">
                 <div className="carousel">
                     {project.cover ? (
-                        <img src={project.cover} alt={`Aperçu ${project.title}`} className="modal-screenshot" />
+                        <img src={`/images/projects/${project.cover}`} alt={`Aperçu ${project.title}`} className="modal-screenshot" loading="lazy" />
                     ) : (
                         <div className="modal-screenshot modal-screenshot_empty" aria-hidden="true" />
                     )}
@@ -89,6 +110,9 @@ function ProjectModal({ project, isOpen, onClose }) {
             </div>
 
             <section className="modal-footer">
+                <button className={isLoggedIn ? "delete-button visible" : "delete-button"} onClick={handleDelete}> Supprimer le projet
+                    <img className='delete-button_icon' src="/logos/delete-icon.svg" alt="Supprimer" />
+                </button>
                 <a href={project.links?.demo} target="_blank" rel="noreferrer" className="link-button">Voir le projet</a>
                 <a href={project.links?.github} target="_blank" rel="noreferrer" className="link-button">Code source</a>
             </section>
