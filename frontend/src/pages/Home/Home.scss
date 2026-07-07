@@ -4,7 +4,7 @@
 
 .home-body {
     @include m.flex-col(center, center);
-    padding: v.$spacing-2xl 0;
+    padding: v.$spacing-xl 0 v.$spacing-lg;
     gap: v.$spacing-2xl;
 
     .section-hero {
@@ -17,6 +17,7 @@
 
         .hero-img {
             @include m.avatar-round(clamp(8rem, 30vw, 20rem));
+            object-position: top;
         }
 
         .hero-text {

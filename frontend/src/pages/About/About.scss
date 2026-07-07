@@ -21,6 +21,7 @@
 
     .hero-img {
         @include m.avatar-round(clamp(8rem, 30vw, 20rem));
+        object-position: top left;
     }
 
     .section-parcours {

@@ -19,6 +19,7 @@
         object-fit: cover;
         aspect-ratio: 4/3;
         border-radius: v.$radius-lg;
+        object-position: top;
 
         @media (max-width: v.$breakpoint-tablet) {
             width: 80%;

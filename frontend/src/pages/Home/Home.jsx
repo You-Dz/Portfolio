@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import testImage from '../../assets/images/test-image.webp';
+import homePortrait from '../../assets/images/home-portrait.webp';
 import projectsImage from '../../assets/images/homecard-project-cover.webp';
 import skillsImage from '../../assets/images/homecard-skill-cover.webp';
-// import projectsImage from '../../assets/images/homecard-project-cover';
+import aboutImage from '../../assets/images/about-image.webp';
 import HomeCard from "../../components/HomeCard/HomeCard";
 import './Home.scss';
 function Home() {
@@ -19,17 +19,17 @@ function Home() {
                         <button className="cta-button">À propos</button>
                     </div>
                 </div>
-                <img className="hero-img" src={testImage} alt="Image portrait de Yoann" />
+                <img className="hero-img" src={homePortrait} alt="Image portrait de Yoann" fetchPriority="high" />
             </section>
             <section className="section-cards">
                 <Link className="section-card_link" to='/projects' >
-                    <HomeCard img={projectsImage} alt="Image descriptive de la page du site visée" title="Mes projets" text="Venez découvrir mes projets" />
+                    <HomeCard img={projectsImage} alt="Image descriptive de la page du site visée" fetchPriority="high" title="Mes projets" text="Explorez mes réalisations en détail" />
                 </Link>
                 <Link className="section-card_link" to='/about'>
-                    <HomeCard img={testImage} alt="Image descriptive de la page du site visée" title="À propos" text="Découvrer en plus sur moi et mon parcours" />
+                    <HomeCard img={aboutImage} alt="Image descriptive de la page du site visée" title="À propos" text="D'éducateur canin à développeur : mon parcours" />
                 </Link>
                 <Link className="section-card_link" to='/skills'>
-                    <HomeCard img={skillsImage} alt="Image descriptive de la page du site visée" title="Mes compétences" text="Venez découvrir mes compétences" />
+                    <HomeCard img={skillsImage} alt="Image descriptive de la page du site visée" title="Mes compétences" text="Mon stack technique en un coup d'œil" />
                 </Link>
             </section>
         </main>

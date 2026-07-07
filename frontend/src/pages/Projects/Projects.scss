@@ -16,4 +16,5 @@
 .projects-gallery {
     @include m.auto-grid;
     padding: v.$spacing-xl 0;
+    min-height: 80vh;
 }

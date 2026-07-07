@@ -1,11 +1,11 @@
-import testImage from '../../assets/images/test-image.webp';
+import aboutImage from '../../assets/images/about-image.webp';
 import './About.scss'
 function About() {
     return (
         <div className="about-main">
             <h1 className='page-title'>Développeur web, orienté logique et architecture</h1>
             <section className="section-presentation">
-                <img src={testImage} alt='portrait de Yoann' className="hero-img" />
+                <img src={aboutImage} alt='portrait de Yoann' className="hero-img" fetchPriority="high" />
                 <div className='section-presentation_text'>
                     <p>
                         Je m'appelle Yoann Doveze. Avant le code, j'ai exercé deux métiers qui ont façonné ma façon de travailler :

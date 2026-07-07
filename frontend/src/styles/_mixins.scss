@@ -23,6 +23,8 @@
     border-radius: v.$radius-md;
     border: none;
     padding: v.$spacing-xs v.$spacing-md;
+    display: inline-block;
+    font: inherit;
 }
 
 @mixin buttonHover {
@@ -93,6 +95,7 @@
     height: $size;
     border-radius: 50%;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 @mixin logo-icon($size: 40px) {

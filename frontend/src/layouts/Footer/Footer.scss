@@ -12,12 +12,19 @@
         gap: 10px;
 
         .socials-link {
-            color: v.$color-card;
+            @include m.button;
+            @include m.buttonHover;
+            color: v.$color-text;
+
+            @media (max-width: v.$breakpoint-mobile) {
+                padding: v.$spacing-xs v.$spacing-sm;
+            }
         }
 
         .footer-scrolltop {
             @include m.button;
             @include m.buttonHover;
+            color: v.$color-text;
 
             @media (max-width: v.$breakpoint-mobile) {
                 padding: v.$spacing-xs v.$spacing-sm;

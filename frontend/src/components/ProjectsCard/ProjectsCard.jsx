@@ -1,5 +1,5 @@
 import './ProjectsCard.scss';
-function ProjectCard({ project, onOpen }) {
+function ProjectCard({ project, onOpen, isFirst }) {
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -7,11 +7,11 @@ function ProjectCard({ project, onOpen }) {
         }
     };
     const displayTags = project.techs.slice(0, 3);
-    console.log(project.resume);
+
     return (
         <article className="project-card" onClick={onOpen} onKeyDown={handleKeyDown} role="button" tabIndex={0} aria-label={`Voir le projet ${project.title}`}>
             {project.cover ? (
-                <img src={`/images/projects/${project.cover}`} alt={project.title} className="project-card_cover" loading="lazy" />
+                <img src={`/images/projects/${project.cover}`} alt={project.title} className="project-card_cover" loading={isFirst ? "eager" : "lazy"} fetchPriority={isFirst ? "high" : "auto"} />
             ) : (
                 <div className="project-card_cover project-card_cover_empty" aria-hidden="true" />
             )}

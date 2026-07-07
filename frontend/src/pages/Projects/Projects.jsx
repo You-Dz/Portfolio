@@ -62,11 +62,12 @@ function Projects() {
             </section>
 
             <section className='projects-gallery' aria-label='Galerie de projets'>
-                {projects.map((project) => (
+                {projects.map((project, index) => (
                     <ProjectCard
                         key={project._id}
                         project={project}
                         onOpen={() => openProjectModal(project)}
+                        isFirst={index === 0}
                     />
                 ))}
             </section>
