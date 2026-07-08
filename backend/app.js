@@ -12,18 +12,27 @@ const app = express();
 connectDB();
 
 // CORS
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
+//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+// CORS
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
+    const origin = req.get('origin');
+    if (origin && origin.includes('vercel.app')) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 
-    // ← AJOUTE CES 2 LIGNES
     if (req.method === 'OPTIONS') {
         return res.sendStatus(200);
     }
 
     next();
 });
+
+
 app.use(express.json());
 
 
