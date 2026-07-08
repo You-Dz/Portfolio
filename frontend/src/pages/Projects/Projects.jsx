@@ -44,17 +44,15 @@ function Projects() {
         return () => { cancelled = true; };
     }, [url, refreshKey]);
 
-    if (loading) return <main><p>Chargement des projets...</p></main>;
-
     const handleProjectDeleted = (deletedId) => {
         setProjects((prev) => prev.filter((p) => p._id !== deletedId));
     };
 
     return (
-        <main>
+        <main className='project-container'>
             <section className='projects-header'>
                 <h1 className='page-title'>Mes projets</h1>
-                {isLoggedIn && (
+                {isLoggedIn && !loading && (
                     <button className="editor-button" onClick={openEditorModal}>
                         Ajouter un projet
                     </button>
@@ -62,14 +60,18 @@ function Projects() {
             </section>
 
             <section className='projects-gallery' aria-label='Galerie de projets'>
-                {projects.map((project, index) => (
-                    <ProjectCard
-                        key={project._id}
-                        project={project}
-                        onOpen={() => openProjectModal(project)}
-                        isFirst={index === 0}
-                    />
-                ))}
+                {loading ? (
+                    <p>Chargement des projets...</p>
+                ) : (
+                    projects.map((project, index) => (
+                        <ProjectCard
+                            key={project._id}
+                            project={project}
+                            onOpen={() => openProjectModal(project)}
+                            isFirst={index === 0}
+                        />
+                    ))
+                )}
             </section>
 
             <ProjectModal
@@ -78,6 +80,7 @@ function Projects() {
                 onClose={closeProjectModal}
                 onDeleted={handleProjectDeleted}
             />
+
             {/* on incrémente refreshKey pour re-trigger le useEffect */}
             <AddProjectModal
                 isOpen={isEditorOpen}

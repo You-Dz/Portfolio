@@ -9,5 +9,5 @@
 
 .layout-content {
     flex: 1;
-    @include m.container-max-width; // garde ce que t'as déjà
+    @include m.container-max-width;
 }
