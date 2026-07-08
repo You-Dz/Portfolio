@@ -12,16 +12,18 @@ const app = express();
 connectDB();
 
 // CORS
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
-//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-// CORS
+const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    'http://localhost:5173'  // pour le dev local
+];
+
 app.use((req, res, next) => {
     const origin = req.get('origin');
-    if (origin && origin.includes('vercel.app')) {
+
+    if (origin && allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
     }
+
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 
@@ -33,6 +35,7 @@ app.use((req, res, next) => {
 });
 
 
+
 app.use(express.json());
 
 
@@ -41,5 +44,4 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/projects', projectsRoute);
 app.use('/api/skills', skillsRoute);
 app.use('/api/auth', userRoute);
-const Project = require('./models/project');
 module.exports = app;
