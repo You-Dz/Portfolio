@@ -6,6 +6,7 @@ import './ProjectModal.scss';
 function ProjectModal({ project, isOpen, onClose, onDeleted }) {
     const { isLoggedIn } = useOutletContext();
     const url = import.meta.env.VITE_API_URL;
+    const API_BASE = url.replace('/api/', '');
 
     if (!project) return null;
 
@@ -34,7 +35,7 @@ function ProjectModal({ project, isOpen, onClose, onDeleted }) {
             <div className="modal-body">
                 <div className="carousel">
                     {project.cover ? (
-                        <img src={`/images/projects/${project.cover}`} alt={`Aperçu ${project.title}`} className="modal-screenshot" loading="lazy" />
+                        <img src={`${API_BASE}/images/projects/${project.cover}`} alt={`Aperçu ${project.title}`} className="modal-screenshot" loading="lazy" />
                     ) : (
                         <div className="modal-screenshot modal-screenshot_empty" aria-hidden="true" />
                     )}

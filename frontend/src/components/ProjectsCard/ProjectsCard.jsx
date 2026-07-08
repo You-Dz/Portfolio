@@ -1,4 +1,5 @@
 import './ProjectsCard.scss';
+const API_BASE = import.meta.env.VITE_API_URL.replace('/api/', '');
 function ProjectCard({ project, onOpen, isFirst }) {
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -11,7 +12,7 @@ function ProjectCard({ project, onOpen, isFirst }) {
     return (
         <article className="project-card" onClick={onOpen} onKeyDown={handleKeyDown} role="button" tabIndex={0} aria-label={`Voir le projet ${project.title}`}>
             {project.cover ? (
-                <img src={`/images/projects/${project.cover}`} alt={project.title} className="project-card_cover" loading={isFirst ? "eager" : "lazy"} fetchPriority={isFirst ? "high" : "auto"} />
+                <img src={`${API_BASE}/images/projects/${project.cover}`} alt={project.title} className="project-card_cover" loading={isFirst ? "eager" : "lazy"} fetchPriority={isFirst ? "high" : "auto"} />
             ) : (
                 <div className="project-card_cover project-card_cover_empty" aria-hidden="true" />
             )}
