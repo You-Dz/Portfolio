@@ -43,6 +43,7 @@
                 height: v.$spacing-xl;
                 border-radius: 50%;
                 object-fit: cover;
+                object-position: top;
             }
 
             .header-name {
@@ -52,18 +53,11 @@
 
             // Bouton discret LogIn / LogOut
             .header-auth {
-                background-color: v.$color-border;
-                color: v.$color-text;
-                border: none;
-                border-radius: v.$radius-md;
-                padding: v.$spacing-xxs v.$spacing-xs;
-                font-size: v.$font-size-xs;
+                @include m.tag;
                 cursor: pointer;
-                opacity: 0.5;
                 transition: v.$transition-base;
 
                 &:hover {
-                    opacity: 1;
                     transform: scale(1.1);
                     box-shadow: v.$shadow-sm;
                 }

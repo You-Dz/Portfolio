@@ -1,10 +1,10 @@
-import img404 from '../../assets/images/404.webp'
+import './NotFound.scss'
 function NotFound() {
     return (
-        <>
+        <main className="error-content">
             <h1>La page que vous recherchez n'existe pas</h1>
-            <img src={img404} />
-        </>
+            <p className='error-404'>404</p>
+        </main>
     )
 }
 export default NotFound

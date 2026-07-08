@@ -114,8 +114,17 @@ function ProjectModal({ project, isOpen, onClose, onDeleted }) {
                 <button className={isLoggedIn ? "delete-button visible" : "delete-button"} onClick={handleDelete}> Supprimer le projet
                     <img className='delete-button_icon' src="/logos/delete-icon.svg" alt="Supprimer" />
                 </button>
-                <a href={project.links?.demo} target="_blank" rel="noreferrer" className="link-button">Voir le projet</a>
-                <a href={project.links?.github} target="_blank" rel="noreferrer" className="link-button">Code source</a>
+                {project.links?.demo && (
+                    <a href={project.links.demo} target="_blank" rel="noreferrer" className="link-button">
+                        Voir le projet
+                    </a>
+                )}
+
+                {project.links?.github && (
+                    <a href={project.links.github} target="_blank" rel="noreferrer" className="link-button">
+                        Code source
+                    </a>
+                )}
             </section>
         </BaseModal>
     );

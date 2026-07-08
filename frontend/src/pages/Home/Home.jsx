@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import homePortrait from '../../assets/images/home-portrait.webp';
+// import homePortrait from '../../assets/images/home-portrait.webp';
 import projectsImage from '../../assets/images/homecard-project-cover.webp';
 import skillsImage from '../../assets/images/homecard-skill-cover.webp';
-import aboutImage from '../../assets/images/about-image.webp';
+import aboutImage from '../../assets/images/home-portrait-avatar.webp';
 import HomeCard from "../../components/HomeCard/HomeCard";
 import './Home.scss';
 function Home() {
@@ -19,7 +19,7 @@ function Home() {
                         <button className="cta-button">À propos</button>
                     </div>
                 </div>
-                <img className="hero-img" src={homePortrait} alt="Image portrait de Yoann" fetchPriority="high" />
+
             </section>
             <section className="section-cards">
                 <Link className="section-card_link" to='/projects' >

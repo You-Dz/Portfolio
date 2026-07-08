@@ -2,6 +2,8 @@
 @use '../../styles/mixins' as m;
 
 .techwatch {
+    @include m.flex-col;
+
     &_list {
         @include m.flex-col;
         gap: v.$spacing-lg;

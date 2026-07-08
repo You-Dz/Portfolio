@@ -1,0 +1,12 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.error-content {
+    @include m.flex-col;
+    gap: v.$spacing-2xl;
+
+    .error-404 {
+        font-size: (clamp(6rem, 30vw, 20rem));
+        color: v.$color-accent
+    }
+}

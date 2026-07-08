@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./Header.scss";
-import headerPortrait from '../../assets/images/Portrait_portfolio.webp';
+import headerPortraitMini from '../../assets/images/home-portrait-mini.webp';
 
 
 function Header({ isLoggedIn, onLogout }) {
@@ -30,7 +30,7 @@ function Header({ isLoggedIn, onLogout }) {
 
             <div className="header-content">
                 <div className="header-left">
-                    <img className="header-portrait" src={headerPortrait} alt="Miniature portrait de Yoann" fetchPriority="high" />
+                    <img className="header-portrait" src={headerPortraitMini} alt="Miniature portrait de Yoann" fetchPriority="high" />
                     <span className="header-name">Yoann Doveze</span>
                     {isLoggedIn && (
                         <button className="header-auth" onClick={handleAuthClick} aria-label="Se déconnecter">
