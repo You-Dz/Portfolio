@@ -1,4 +1,5 @@
-import './NotFound.scss'
+import './NotFound.scss';
+
 function NotFound() {
     return (
         <main className="error-content">

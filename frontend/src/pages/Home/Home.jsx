@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-// import homePortrait from '../../assets/images/home-portrait.webp';
 import projectsImage from '../../assets/images/homecard-project-cover.webp';
 import skillsImage from '../../assets/images/homecard-skill-cover.webp';
 import aboutImage from '../../assets/images/home-portrait-avatar.webp';

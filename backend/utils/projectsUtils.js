@@ -12,10 +12,6 @@ const findProjectById = (id) => {
         });
 };
 
-const buildImageUrl = (req, filename) =>
-    `${req.protocol}://${req.get('host')}/images/${filename}`;
 
-
-
-module.exports = { findProjectById, buildImageUrl };
+module.exports = { findProjectById };
 

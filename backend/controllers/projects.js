@@ -36,7 +36,7 @@ exports.createProject = (req, res, next) => {
 };
 
 
-exports.updateProject = (req, ress, next) => {
+exports.updateProject = (req, res, next) => {
     let projectNew;
     if (req.file || req.files) {
         projectNew = { ...JSON.parse(req.body.project) }

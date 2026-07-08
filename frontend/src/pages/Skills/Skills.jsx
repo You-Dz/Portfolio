@@ -1,4 +1,3 @@
-// import { dataSkills } from '../../data/skills';
 import { useState, useEffect } from 'react';
 import { getUrl } from '../../api/http';
 import SkillCard from '../../components/SkillCard/SkillCard';
