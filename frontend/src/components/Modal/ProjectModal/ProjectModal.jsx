@@ -17,7 +17,7 @@ function ProjectModal({ project, isOpen, onClose, onDeleted }) {
         );
         if (!confirmed) return;
 
-        const success = await deleteUrl(`${url}projects/`, project._id);
+        const success = await deleteUrl(`${url}api/projects/`, project._id);
 
         if (success) {
             onDeleted(project._id); // on prévient le parent
